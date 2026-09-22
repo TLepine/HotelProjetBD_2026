@@ -45,7 +45,7 @@ def creerTypeChambre (typeChambre: TypeChambreDTO):
         session.commit()
         return typeChambre
 
-def getChambrePArtNumero(no_chambre: int):
+def getChambreParNumero(no_chambre: int):
     with Session(engine) as session:
         stmt = select(Chambre).where(Chambre.numero_chambre == no_chambre)
         result = session.execute(stmt)
