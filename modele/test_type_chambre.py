@@ -18,3 +18,7 @@ class test_type_chambre(unittest.TestCase):
             stmt = select(TypeChambre).where(TypeChambre.id_type_chambre =='1D97FBBB-53C7-4284-919C-0DD84095B512')
             tchambre = session.execute(stmt).scalar_one()
             self.assertEqual(tchambre.id_type_chambre, '1D97FBBB-53C7-4284-919C-0DD84095B512')
+            self.assertEqual(tchambre.nom_type, 'simple')
+            self.assertEqual(tchambre.prix_plancher, 59.0)
+            self.assertEqual(tchambre.prix_plafond, 99.0)
+            self.assertEqual(tchambre.description_chambre, 'Chambre avec lit simple')
