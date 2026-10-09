@@ -1,17 +1,29 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, model_validator
 from model import TypeChambre, Chambre
 from uuid import UUID
 
 # Data transfer Object: pydantic BaseModel pour intégration facile avec Fast API
 # Facilite aussi grandement la sérialization et la validation des donnés contenues
 
+
 class TypeChambreDTO(BaseModel):
     id_type_chambre : Optional[UUID] = None
-    nom_type: str
+    nom_type: str = Field(max_length=6)  #changer pour le bon max lenght
     prix_plafond: Optional[float] = None
     prix_plancher: float
     description_chambre: Optional[str] = None
+
+
+    @model_validator(mode='after')
+    def verifier_prix_par_type(self):
+         if (self.nom_type == 'simple' and self.prix_plancher > 250) :
+              raise ValueError("Un simple ne peut pas louer plus de 250 par nuit")
+         return self    
+
+
+
+
 
     def __init__(self, typeChambre: TypeChambre =None):
         super().__init__(id_type_chambre = typeChambre.id_type_chambre,
@@ -22,11 +34,13 @@ class TypeChambreDTO(BaseModel):
                          )
 
 class ChambreDTO(BaseModel):
-    idChambre : Optional[UUID]
-    numero_chambre: int
-    disponible_reservation : bool
-    autre_informations: Optional[str] = None
+    idChambre : Optional[UUID] = None
+    numero_chambre: int = Field(le=999, ge=0, custom_error="Le numéro doit être entre 0 et 999")
+    disponible_reservation : bool = Field(default=True)
+    autre_informations: Optional[str] = Field(None, max_length=200, custom_error="200 caractères maximum pour les autres informations")
     type_chambre: TypeChambreDTO
+
+
 
     def __init__(self, chambre: Chambre =None):
             super().__init__(idChambre = chambre.id_chambre,
