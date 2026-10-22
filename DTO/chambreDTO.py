@@ -1,6 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel, Field, model_validator
-from model import TypeChambre, Chambre
+from model import TypeChambre, Chambre, Usager
 from uuid import UUID
 
 # Data transfer Object: pydantic BaseModel pour intégration facile avec Fast API
@@ -49,3 +49,21 @@ class ChambreDTO(BaseModel):
                              autre_informations = chambre.autre_informations,
                              type_chambre = TypeChambreDTO(chambre.type_chambre) 
                              )
+
+class UsagerDTO(BaseModel):
+     idUsager : Optional[UUID] = None
+     motDePasse : Optional[str] = Field(None, max_length=50, custom_error="50 caractères maximum pour le mot de passe")
+     nom : str = Field( max_length=50, custom_error="50 caractères maximum pour le nom et non vide")
+     prenom : str = Field( max_length=50, custom_error="50 caractères maximum pour le prenom et non vide")
+     adresse : str = Field( max_length=100, custom_error="100 caractères maximum pour l'adresse et non vide")
+     mobile : Optional[str] = Field(None, max_length=50, custom_error="50 caractères maximum pour le numéro de mobile")
+
+
+     def __init__(self, usager: Usager =None):
+                 super().__init__(idUsager= usager.id_usager,
+                                  motDePasse = usager.mot_de_passe,
+                                  nom = usager.nom,
+                                  prenom = usager.prenom,
+                                  adresse = usager.adresse,
+                                  mobile = usager.mobile
+                                  )
