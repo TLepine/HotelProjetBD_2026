@@ -1,5 +1,5 @@
 import unittest
-from datetime import datetime, date, time
+from datetime import datetime
 
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, select
