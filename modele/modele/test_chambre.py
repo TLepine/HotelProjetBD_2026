@@ -22,9 +22,9 @@ class test_chambre(unittest.TestCase):
             self.assertTrue(chambre.disponible_reservation)
             self.assertEqual(chambre.id_chambre, 'F6BEBF8A-2AC6-4810-8CAF-008FAA63E238')
             self.assertEqual(chambre.type_chambre.nom_type, 'simple')
-            self.assertEqual(chambre.type_chambre.prix_plancher, 59.0)
-            self.assertEqual(chambre.type_chambre.prix_plafond, 99.0)
-            self.assertEqual(chambre.type_chambre.description_chambre, 'Chambre avec lit simple')
+            self.assertEqual(chambre.type_chambre.prix_plancher, 33.3)
+            self.assertEqual(chambre.type_chambre.prix_plafond, 44.4)
+            self.assertEqual(chambre.type_chambre.description_chambre, 'Chambre simple')
             self.assertIsNotNone(chambre.type_chambre)
             self.assertEqual(chambre.type_chambre.id_type_chambre, '1D97FBBB-53C7-4284-919C-0DD84095B512')
 

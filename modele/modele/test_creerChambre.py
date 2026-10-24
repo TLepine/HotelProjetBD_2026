@@ -6,7 +6,7 @@ class test_crerrChambre(unittest.TestCase):
     def test_creerChambre(self):
         chambreDTO = ChambreDTO(
                 Chambre(
-                        numero_chambre = 605,
+                        numero_chambre = 674,
                         disponible_reservation = True,
                         type_chambre = 
                             TypeChambre(
@@ -16,4 +16,4 @@ class test_crerrChambre(unittest.TestCase):
                 )
         )
         chambreDTOCree = creerChambre(chambreDTO)
-        self.assertEqual(chambreDTOCree.numero_chambre, 605)
+        self.assertEqual(chambreDTOCree.numero_chambre, 674)
