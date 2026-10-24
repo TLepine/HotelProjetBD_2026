@@ -5,5 +5,5 @@ from metier.chambreMetier import supprimerUsager, UsagerDTO
 class test_creerUsager(unittest.TestCase):
     def test_suppUsager(self):
         
-        SuppUsager = supprimerUsager("0993F8D0-FA9D-4F31-BD2C-DB23B519F966")
+        SuppUsager = supprimerUsager("0A3352CC-77BF-47F5-8FB2-60AB681ED745")
         self.assertIsNone(SuppUsager)

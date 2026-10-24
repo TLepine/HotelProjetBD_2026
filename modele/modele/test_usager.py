@@ -12,11 +12,11 @@ engine =create_engine('mssql+pyodbc://localhost\\MSSQLSERVER2/Hotel?driver=ODBC+
 class test_usager(unittest.TestCase):
     def test_getUsagerParNom(self):
         with Session(engine) as session:
-                    stmt= select(Usager).where(Usager.prenom=='steve')
+                    stmt= select(Usager).where(Usager.prenom=='Paul')
                     usager=session.execute(stmt).scalar_one()
-                    self.assertEqual(usager.prenom,'steve')
-                    self.assertEqual(usager.nom,'rejean')
-                    self.assertEqual(usager.adresse,'111 rue nord')
-                    self.assertEqual(usager.mobile,'12345')
-                    self.assertEqual(usager.mot_de_passe,'abcd')
-                    self.assertEqual(usager.id_usager,'0993F8D0-FA9D-4F31-BD2C-DB23B519F966')
+                    self.assertEqual(usager.prenom,'Paul')
+                    self.assertEqual(usager.nom,'Sainte-Marie')
+                    self.assertEqual(usager.adresse,'144 rue Julien')
+                    self.assertEqual(usager.mobile,'111 111 1111')
+                    self.assertEqual(usager.mot_de_passe,'54321')
+                    self.assertEqual(usager.id_usager,'00D685BF-CE7B-44C0-B204-D7483E6D50A5')
