@@ -141,6 +141,23 @@ def rechercherUsager(nom: str):
                     return UsagerDTO(usager)
     except SQLAlchemyError as e:
             raise ValueError(f"Une erreur est survenue avec la BD : {e}")
+
+def rechercherReservation(id: str):
+    
+    try: 
+            with Session(engine) as session:
+    
+                stmtres = select(Reservation).where(Reservation.id_reservation == id)
+                if session.execute(stmtres).scalars().first() is None:
+                    raise ValueError( "Aucune reservation avec ce nom")
+                
+                stmt = select(Reservation).where(Reservation.id_reservation == id)
+                result = session.execute(stmt)
+    
+                for reservation in result.scalars():
+                    return ReservationDTO(reservation)
+    except SQLAlchemyError as e:
+            raise ValueError(f"Une erreur est survenue avec la BD : {e}")
      
 
 def modifierChambre(chambre:ChambreDTO):
