@@ -5,5 +5,5 @@ from metier.chambreMetier import supprimerTypeChambre, TypeChambreDTO
 class test_creerUsager(unittest.TestCase):
     def test_suppTypeUsager(self):
         
-        SuppTypeChambre = supprimerTypeChambre("1D97FBBB-53C7-4284-919C-0DD84095B513")
+        SuppTypeChambre = supprimerTypeChambre("CBE63E9D-DE76-4FDA-A326-E46E1120D200")
         self.assertIsNone(SuppTypeChambre)
